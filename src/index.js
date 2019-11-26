@@ -1,5 +1,5 @@
-const { merge, fromEvent, takeUntil, combineLatest }= require('rxjs');
-const { pairwise, scan, map, reduce, tap, timeInterval, buffer, bufferCount, switchMap} = require('rxjs/operators');
+const { merge, fromEvent }= require('rxjs');
+const { pairwise, scan, map } = require('rxjs/operators');
 
 const { morse2text } = require('../')
 
@@ -20,7 +20,7 @@ merge(
   map(([previous, current]) => {
     const duration = current.timeStamp - previous.timeStamp
     if (current.type === 'mousedown') {
-      if (duration < 500) {
+      if (duration < 300) {
         return ''
       } else  if (duration < 2000) {
         return ' '
