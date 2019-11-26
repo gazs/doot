@@ -71,7 +71,10 @@ const morse2text = (str) => {
   }, ['', ''])
   
   if (remainingBuffer) {
-    result += letters.find(x => x.code === remainingBuffer).letter;
+    const bla = letters.find(x => x.code === remainingBuffer);
+    if (bla) {
+      result += bla.letter;
+    }
   }
 
   return result;
