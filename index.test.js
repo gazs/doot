@@ -27,3 +27,9 @@ describe('identity', () => {
     expect(morse2text(text2morse(alphabet))).toEqual('A?A');
   })
 });
+
+describe('morse2text', () => {
+  test('long gap', () => {
+    expect(morse2text('-     -')).toEqual('T T')
+  });
+})

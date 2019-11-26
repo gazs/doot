@@ -63,7 +63,7 @@ const morse2text = (str) => {
           output += bla.letter;
           buffer = '';
         } else {
-          buffer += curr;
+          buffer += ' ';
         }
     }
     return [output, buffer]

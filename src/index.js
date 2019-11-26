@@ -22,10 +22,10 @@ merge(
     if (current.type === 'mousedown') {
       if (duration < 300) {
         return ''
-      } else  if (duration < 2000) {
+      } else  if (duration < 700) {
         return ' '
       } else {
-        return '   '
+        return '     '
       }
 
     } else {
@@ -34,6 +34,7 @@ merge(
   }),
   scan(({text, morse}, curr) => {
     morse += curr
+    console.log({morse})
     text = morse2text(morse)
     return { text, morse }
   }, {text: '', morse: ''}),
