@@ -4,7 +4,9 @@ const { pairwise, scan, map, reduce, tap, timeInterval, buffer, bufferCount, swi
 const { morse2text } = require('../')
 
 const button = document.querySelector('button');
-const output = document.querySelector('p');
+
+const output = document.querySelector('#text');
+const codeOutput = document.querySelector('#code');
 
 const mouseDown = fromEvent(button, 'mousedown')
 const mouseUp = fromEvent(button, 'mouseup');
@@ -18,10 +20,12 @@ merge(
   map(([previous, current]) => {
     const duration = current.timeStamp - previous.timeStamp
     if (current.type === 'mousedown') {
-      if (duration < 1000) {
+      if (duration < 500) {
         return ''
-      } else  {
+      } else  if (duration < 2000) {
         return ' '
+      } else {
+        return '   '
       }
 
     } else {
@@ -36,4 +40,7 @@ merge(
 )
 
 
-.subscribe(doot => output.innerHTML = doot.text)
+.subscribe(doot => {
+output.innerHTML = doot.text;
+codeOutput.innerHTML = doot.morse
+})
